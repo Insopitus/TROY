@@ -1,9 +1,12 @@
-export class BoxGeometry {
+import { Geometry } from "./Geometry"
+
+export class BoxGeometry extends Geometry {
   vertices: Float32Array
   indices: Float32Array
   normals: Float32Array
   uv: Float32Array
   constructor(public width: number, public height: number, public depth: number) {
+    super()
     const w = width
     const d = depth
     const h = height
