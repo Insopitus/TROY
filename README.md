@@ -8,4 +8,5 @@ Yes, I know there're quite a few decent open-source javascript 3D libraries, lik
 
 ## What do I want to achieve?
 
-Nothing too serious. I'm not willing to write a lib as great as Threejs. That would take years of hard work. I do this just for fun. So the job right now is basic - to draw a cube with light and shading with a mouse-controled camera. New features would be added as I learn more of WebGL and get enough time.
+Nothing too serious. I'm not willing to write a lib as great as Threejs. That would take years of hard work. I do this just for fun. So the job right now is basic - to draw a cube with light and shading with a mouse-controled camera. New features would be added as I learn more of WebGL and get enough time then.
+
