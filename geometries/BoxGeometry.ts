@@ -2,7 +2,7 @@ import { Geometry } from "./Geometry"
 
 export class BoxGeometry extends Geometry {
   vertices: Float32Array
-  indices: Float32Array
+  indices: Uint16Array
   normals: Float32Array
   uv: Float32Array
   constructor(public width: number, public height: number, public depth: number) {
@@ -26,6 +26,11 @@ export class BoxGeometry extends Geometry {
       -1, 0, 0, -1, 0, 0, -1, 0, 0, -1, 0, 0, -1, 0, 0, -1, 0, 0,
       1, 0, 0, 1, 0, 0, 1, 0, 0, 1, 0, 0, 1, 0, 0, 1, 0, 0,
     ])
+    const indicesArray = []
+    for(let i=0;i<36;i++){
+      indicesArray.push(i)
+    }
+    this.indices = new Uint16Array(indicesArray)
   }
 }
 

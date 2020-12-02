@@ -20,7 +20,8 @@ export class Renderer {
   render(scene: Scene,camera:Camera) {
     const models = scene.models
     for(let i=0,l=models.length;i<l;i++){
-      
+      const model = models[i]
+      model.draw(this.context,camera)
     }
   }
 }
