@@ -1,27 +1,35 @@
-import { Camera } from './Camera'
-import { Color } from './Color'
+import  Camera  from './Camera'
+import  Color  from './Color'
 import { Scene } from './Scene'
 interface RendererOptions {
   canvas?: HTMLCanvasElement
   backgroundColor?: Color
 }
-export class Renderer {
+export default class Renderer {
   domElement: HTMLCanvasElement
   context: WebGLRenderingContext
-  backgroundColor = new Color()
+  backgroundColor = new Color(0,0,0)
   constructor(options?: RendererOptions) {
     this.domElement = options.canvas ?? document.createElement('canvas')
-    this.backgroundColor = options.backgroundColor ?? new Color()
-    const gl = this.domElement.getContext('webgl2')
+    const canvas = this.domElement
+    canvas.height = canvas.clientHeight
+    canvas.width = canvas.clientWidth    
+    this.backgroundColor = options.backgroundColor ?? new Color(0,0,0)    
+    const gl = this.domElement.getContext('webgl')
     this.context = gl
+    gl.enable(gl.DEPTH_TEST)
+    gl.viewport(0,0,this.domElement.clientWidth,this.domElement.clientHeight)
     gl.clearColor(this.backgroundColor.r, this.backgroundColor.g, this.backgroundColor.b, this.backgroundColor.a)
     gl.clear(gl.COLOR_BUFFER_BIT | gl.DEPTH_BUFFER_BIT)
+    
   }
+  
   render(scene: Scene,camera:Camera) {
     const models = scene.models
-    for(let i=0,l=models.length;i<l;i++){
-      const model = models[i]
-      model.draw(this.context,camera)
+    const gl = this.context
+    gl.clear(gl.COLOR_BUFFER_BIT | gl.DEPTH_BUFFER_BIT)
+    for(const model of models){
+      model.draw(gl,camera)
     }
   }
 }

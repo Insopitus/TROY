@@ -1,6 +1,6 @@
-import { Geometry } from "./Geometry"
+import Geometry from "./Geometry"
 
-export class BoxGeometry extends Geometry {
+export default class BoxGeometry extends Geometry {
   vertices: Float32Array
   indices: Uint16Array
   normals: Float32Array
@@ -27,7 +27,7 @@ export class BoxGeometry extends Geometry {
       1, 0, 0, 1, 0, 0, 1, 0, 0, 1, 0, 0, 1, 0, 0, 1, 0, 0,
     ])
     const indicesArray = []
-    for(let i=0;i<36;i++){
+    for (let i = 0; i < 36; i++) {
       indicesArray.push(i)
     }
     this.indices = new Uint16Array(indicesArray)

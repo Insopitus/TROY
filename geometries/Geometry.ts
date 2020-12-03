@@ -1,4 +1,4 @@
-export class Geometry{
+export default class Geometry{
   vertices: Float32Array
   indices: Uint16Array
   normals: Float32Array
