@@ -4,9 +4,9 @@ This is a project I wanted to start when I was reading *WebGL Programming Guide:
 
 Dunno if it's just me, but when i was learning WebGL APIs, I was like "Gosh, do I really need to call these many functions just to draw a cube? A wrap function is definitely needed."
 
-Yes, I know there're quite a few decent open-source javascript 3D libraries, like Three.js and Babylon.js. What I'm going to do is literally reinventing the wheels. But, whatever, I just want to write my own one. It's also a good way of learning, after all.
+Yes, I know there're quite a few decent open-source javascript 3D libraries out there, like Three.js and Babylon.js. What I'm going to do is literally reinventing the wheels. But, whatever, I just want to write my own one. Pretty sure I'll learn a lot in the progress.
 
 ## What do I want to achieve?
 
-Nothing too serious. I'm not willing to write a lib as great as Threejs. That would take years of hard work. I do this just for fun. So the job right now is basic - to draw a cube with light and shading with a mouse-controled camera. New features would be added as I learn more of WebGL and get enough time then.
+Nothing too serious. I'm not willing to write a lib as great as Threejs. That would take years of hard work. The job right now is basic - to draw a cube with light and shading with a mouse-controled camera. New features would be added as I learn more of WebGL and get enough time then.
 
