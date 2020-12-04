@@ -2,7 +2,7 @@ import  Camera  from './core/Camera'
 import  Color  from './core/Color'
 import  Mesh  from './core/Mesh'
 import Renderer from './core/Renderer'
-import  {Scene}  from './core/Scene'
+import  Scene  from './core/Scene'
 import  BoxGeometry  from './geometries/BoxGeometry'
 import Geometry from './geometries/Geometry'
 const canvas = document.getElementById('container') as HTMLCanvasElement

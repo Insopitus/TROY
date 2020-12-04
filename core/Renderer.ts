@@ -1,6 +1,6 @@
 import  Camera  from './Camera'
 import  Color  from './Color'
-import { Scene } from './Scene'
+import  Scene  from './Scene'
 interface RendererOptions {
   canvas?: HTMLCanvasElement
   backgroundColor?: Color
