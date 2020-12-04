@@ -1,6 +1,6 @@
 import { Light } from '../lights/Light'
 import  Mesh  from './Mesh'
-export class Scene {
+export default class Scene {
   models: Set<Mesh> = new Set()
   lights: Set<Light> = new Set()
   constructor() { }

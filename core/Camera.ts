@@ -5,7 +5,7 @@ export default class Camera {
   modelMatrix: Matrix4 = new Matrix4()
   viewMatrix: Matrix4 = new Matrix4()// inverse of the modelMatrix
   projectionMatrix: Matrix4 = new Matrix4()
-  rotation = new Vector3(0,-Math.PI/2,0)
+  rotation = new Vector3(0,0,0)
   position = new Vector3()
   constructor(public fov: number, public aspect: number, public near: number, public far: number) {
     const fovFactor = 1 / Math.tan(fov / 2)

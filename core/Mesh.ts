@@ -12,8 +12,8 @@ export default class Mesh {
     const fs = readFileSync('C:/Users/jesse/Documents/GitHub/TROY/shaders/mesh.frag','utf-8')
     const program = setShaderProgram(gl,vs,fs)
     const viewMatrix = camera.viewMatrix.elements
-    const projectionMatrix = new Float32Array([2.1445069313049316,0,0,0,0,2.1445069313049316,0,0,0,0,-1.000100016593933,-1,0,0,-0.2000100016593933,0])
-    // const projectionMatrix = camera.projectionMatrix.elements
+    
+    const projectionMatrix = camera.projectionMatrix.elements
     //  new Float32Array([0.9284766912460327,-0.020657625049352646,0.3708157241344452,0,0,0.9984518885612488,0.05562235787510872,0,-0.3713906705379486,-0.051644064486026764,0.9270393252372742,0,5.368969158148218e-16,0,-5.393514633178711,1])
     setVertexBuffer(gl,program,'a_Position',3,this.geometry.vertices)
     // setVertexBuffer(gl,program,'a_Normal',3,this.geometry.normals)
@@ -31,7 +31,7 @@ export default class Mesh {
     this.compile(gl,camera)
     const count = this.geometry.vertices.length/3
     console.log('here')
-    gl.drawElements(gl.LINES, 36, gl.UNSIGNED_SHORT, 0)
+    gl.drawElements(gl.LINE_LOOP, count, gl.UNSIGNED_SHORT, 0)
     // gl.drawArrays(gl.POINTS,0,1)
   }
 }
