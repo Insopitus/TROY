@@ -42,7 +42,15 @@ export default class Vector3 {
   dot(vec: Vector3) {
     return this.x * vec.x + this.y + vec.y + this.z * vec.z
   }
-  cross(vec:Vector3){}
+  cross(vec:Vector3){
+    const x1 = this.x
+    const x2 = vec.x
+    const y1 = this.y
+    const y2 = vec.y
+    const z1 = this.z
+    const z2 = vec.z
+    return new Vector3(y1*z2-z1*y2,z1*x2-x1*z2,x1*y2-y1*x2)
+  }
   multiplyScalar(n:number){
     this.x*=n
     this.y*=n
