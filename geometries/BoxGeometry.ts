@@ -7,16 +7,24 @@ export default class BoxGeometry extends Geometry {
   uv: Float32Array
   constructor(public width: number, public height: number, public depth: number) {
     super()
-    const w = width
-    const d = depth
-    const h = height
+    const w = width/2
+    const d = depth/2
+    const h = height/2
+    // this.vertices = new Float32Array([
+    //   w,h,-d, -w,h,-d, -w,h,d,  -w,h,d, w,h,d, w,h,-d,   // top side
+    //   w,-h,-d, -w,-h,-d, -w,-h,d, -w,-h,d, w,-h,d, // bottom side
+    //   -w, h, d, -w, h, -d, w, h, d, -w, h, -d, -w, h, -d, w, h, d, //front side
+    //   w, -h, d, -w, -h, d, w, -h, d, w, -h, d, w, -h, -d, w, -h, d, // back
+    //   -w, h, d, -w, -h, d, w, -h, d, -w, h, -d, -w, h, d, w, -h, d, // left
+    //   w, -h, d, w, h, d, -w, h, -d, w, -h, d, -w, h, -d, w, -h, -d, //right
+    // ])
     this.vertices = new Float32Array([
-      w / 2, -d / 2, h / 2, -w / 2, -d / 2, h / 2, -w / 2, -d / 2, h / 2, -w / 2, d / 2, h / 2, w / 2, d / 2, h / 2, w / 2, -d / 2, h / 2,   // top side
-      -w / 2, d / 2, -h / 2, w / 2, -d / 2, -h / 2, w / 2, -d / 2, -h / 2, w / 2, d / 2, -h / 2, -w / 2, d / 2, -h / 2, w / 2, -d / 2, -h / 2, // bottom side
-      -w / 2, d / 2, h / 2, -w / 2, d / 2, -h / 2, w / 2, d / 2, h / 2, -w / 2, d / 2, -h / 2, -w / 2, d / 2, -h / 2, w / 2, d / 2, h / 2, //front side
-      w / 2, -d / 2, h / 2, -w / 2, -d / 2, h / 2, w / 2, -d / 2, h / 2, w / 2, -d / 2, h / 2, w / 2, -d / 2, -h / 2, w / 2, -d / 2, h / 2, // back
-      -w / 2, d / 2, h / 2, -w / 2, -d / 2, h / 2, w / 2, -d / 2, h / 2, -w / 2, d / 2, -h / 2, -w / 2, d / 2, h / 2, w / 2, -d / 2, h / 2, // left
-      w / 2, -d / 2, h / 2, w / 2, d / 2, h / 2, -w / 2, d / 2, -h / 2, w / 2, -d / 2, h / 2, -w / 2, d / 2, -h / 2, w / 2, -d / 2, -h / 2, //right
+      w,h,-d, -w,h,-d, -w,h,d,  -w,h,d, w,h,d, w,h,-d, //top
+      -w,h,d,-w,h,-d,-w,-h,-d, -w,-h,-d,-w,-h,d,-w,h,d,//left
+      -w,-h,-d,w,-h,-d, w,-h,d,w,-h,d,-w,-h,d,-w,-h,-d, //bottom
+      w,-h,d,w,h,d,-w,h,d,-w,h,d,-w,-h,d,w,-h,d, //front
+      w,h,-d,w,h,d,w,-h,d, w,-h,d,w,-h,-d,w,h,-d,//right
+     -w,-h,-d,-w,h,-d,w,h,-d,w,h,-d,w,-h,-d,-w,-h,-d,//back
     ])
     this.normals = new Float32Array([
       0, 1, 0, 0, 1, 0, 0, 1, 0, 0, 1, 0, 0, 1, 0, 0, 1, 0,
