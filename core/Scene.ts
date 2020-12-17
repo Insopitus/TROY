@@ -4,10 +4,14 @@ export default class Scene {
   models: Set<Mesh> = new Set()
   lights: Set<Light> = new Set()
   constructor() { }
-  addMesh(mesh: Mesh) {
-    this.models.add(mesh)
+  addMesh(...meshes: Mesh[]) {
+    for(let mesh of meshes){
+      this.models.add(mesh)
+    }
   }
-  addLight(light:Light){
-    this.lights.add(light)
+  addLight(...lights:Light[]){
+    for(let light of lights){
+      this.lights.add(light)
+    }
   }
 }

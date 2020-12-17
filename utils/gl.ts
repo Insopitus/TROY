@@ -1,3 +1,8 @@
+enum UniformType {
+  'mat4' = 'matrixUniform4fv',
+  'float' = 'uniform1f',
+  'vec3' = 'uniform3f'
+}
 export function setShaderProgram(gl: WebGLRenderingContext, vs: string, fs: string) {
   const vert = getShader(gl, vs, 'vert')
   const frag = getShader(gl, fs, 'frag')
@@ -5,8 +10,8 @@ export function setShaderProgram(gl: WebGLRenderingContext, vs: string, fs: stri
   gl.attachShader(shaderProgram, vert)
   gl.attachShader(shaderProgram, frag)
   gl.linkProgram(shaderProgram)
-  if(!gl.getProgramParameter(shaderProgram,gl.LINK_STATUS)){
-      console.error(gl.getProgramInfoLog(shaderProgram))
+  if (!gl.getProgramParameter(shaderProgram, gl.LINK_STATUS)) {
+    console.error(gl.getProgramInfoLog(shaderProgram))
   }
   gl.useProgram(shaderProgram)
   return shaderProgram
@@ -18,8 +23,8 @@ function getShader(gl: WebGLRenderingContext, shaderStr: string, type: 'frag' | 
   gl.shaderSource(shader, shaderStr)
   gl.compileShader(shader)
   if (!gl.getShaderParameter(shader, gl.COMPILE_STATUS)) {
-      console.error(gl.getShaderInfoLog(shader));
-      return null;
+    console.error(gl.getShaderInfoLog(shader));
+    return null;
   }
   return shader
 }
@@ -41,4 +46,7 @@ export function setIndexBuffer(gl: WebGLRenderingContext, data: Uint16Array) {
   gl.bindBuffer(gl.ELEMENT_ARRAY_BUFFER, indicesBuffer)
   gl.bufferData(gl.ELEMENT_ARRAY_BUFFER, data, gl.STATIC_DRAW)
   // return data.length
+}
+export function setUniform(program:WebGLProgram,name:string,type:string,data:number|Iterable<number>){
+  
 }

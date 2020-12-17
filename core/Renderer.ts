@@ -26,10 +26,11 @@ export default class Renderer {
   
   render(scene: Scene,camera:Camera) {
     const models = scene.models
+    const lights = scene.lights
     const gl = this.context
     gl.clear(gl.COLOR_BUFFER_BIT | gl.DEPTH_BUFFER_BIT)
     for(const model of models){
-      model.draw(gl,camera)
+      model.draw(gl,camera,scene)
     }
   }
 }

@@ -5,6 +5,9 @@ import Renderer from './core/Renderer'
 import  Scene  from './core/Scene'
 import  BoxGeometry  from './geometries/BoxGeometry'
 import Geometry from './geometries/Geometry'
+import AmbientLight from './lights/AmbientLight'
+import { DirectionalLight } from './lights/DirectionalLight'
+import Vector3 from './math/Vector3'
 const canvas = document.getElementById('container') as HTMLCanvasElement
 const renderer = new Renderer({canvas})
 const box = new BoxGeometry(1,1,1)
@@ -14,12 +17,14 @@ geometry.indices = new Uint16Array([1,2,3])
 const scene = new Scene()
 scene.addMesh(new Mesh(box))
 const camera = new Camera(Math.PI/4,canvas.width/canvas.height,1,1000)
-camera.position.set(0.2,0,2)
-camera.updateMatrix()
-console.log(camera.projectionMatrix)
-console.log(camera.viewMatrix)
+const directionalLight = new DirectionalLight(0xffffff,new Vector3(-1,-1,-1))
+const ambientLight = new AmbientLight(new Color(1,1,1,.2))
+scene.addLight(directionalLight,ambientLight)
 
-console.log(camera)
+camera.position.set(0,1,3)
+camera.updateMatrix()
+
+
 
 renderer.render(scene,camera)
 // function render(){

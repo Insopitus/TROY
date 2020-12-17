@@ -1,3 +1,3 @@
-export class Light{
+export abstract class Light{
   
 }

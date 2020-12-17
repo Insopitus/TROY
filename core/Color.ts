@@ -3,57 +3,61 @@ const rgbReg = /^([0-9a-f]{1}){3}$/i
 const rgbaReg = /^([0-9a-f]{1}){4}$/i
 const rrggbbReg = /^([0-9a-f]{2}){3}$/i
 const rrggbbaaReg = /^([0-9a-f]{2}){4}$/i
-
+export type ColorTypes = Color | string | number
 export default class Color {
 	r = 0
 	g = 0
 	b = 0
 	a = 1
-	
+
 	/** 
 	 * 4 params R, G, B, A, all of which are numbers and are from 0 to 1. 
 	 * You can also give only 1 parameter which is a W3C color keyword like 'red' or 'aqua',
 	 * or a hex number like 0x00ff00, or a hex string like '#00ff00' (# is required to distinguish from color keywords)
   */
-  //constructor reload
-  constructor(red:number,green:number,blue:number,alpha?:number)
-  constructor(color:string)
-  constructor(color:number)
-	constructor(red: number | string, green?: number, blue?: number, alpha?: number) {
-    //have to repeat this in the set method since i got trouble dealing with the overload thing
-		if(red==='transparent'){
+	//constructor reload
+	constructor(red: number, green: number, blue: number, alpha?: number)
+	constructor(color: string | number | Color)
+	
+	constructor(red?: number | string | Color, green?: number, blue?: number, alpha?: number) {
+		//have to repeat this in the set method since i got trouble dealing with the overload thing
+		if (!red) {
+			return
+		}else if (red instanceof Color) {
+			this.copy(red)
+		}
+		else if (red === 'transparent') {
 			this.a = 0
 			return
-		}
-		if (arguments.length >= 3) {
+		}else if (arguments.length >= 3) {
 			this.r = red as number
 			this.g = green
 			this.b = blue
 			this.a = alpha ?? 1
 		} else {
 			if (typeof red === 'string' && red[0] !== '#') {
-				red = keywords[red]				
+				red = keywords[red]
 			}
-			const rgb = hex2rgba(red)
+			const rgb = hex2rgba(red as string | number)
 			this.r = rgb.r
 			this.g = rgb.g
 			this.b = rgb.b
 			this.a = rgb.a ?? 1
 		}
 
-  }
-  copy(color:Color){
-    this.r = color.r
-    this.g = color.g
-    this.b = color.b
-    this.a = color.a
-    return this
-  }
-  set(red:number,green:number,blue:number,alpha?:number):this
-  set(color:string):this
-  set(color:number):this
-	set(red: number | string, green?: number, blue?: number, alpha?: number):this{
-    if(red==='transparent'){
+	}
+	copy(color: Color) {
+		this.r = color.r
+		this.g = color.g
+		this.b = color.b
+		this.a = color.a
+		return this
+	}
+	set(red: number, green: number, blue: number, alpha?: number): this
+	set(color: string): this
+	set(color: number): this
+	set(red: number | string, green?: number, blue?: number, alpha?: number): this {
+		if (red === 'transparent') {
 			this.a = 0
 			return
 		}
@@ -64,7 +68,7 @@ export default class Color {
 			this.a = alpha ?? 1
 		} else {
 			if (typeof red === 'string' && red[0] !== '#') {
-				red = keywords[red]				
+				red = keywords[red]
 			}
 			const rgb = hex2rgba(red)
 			this.r = rgb.r
@@ -72,16 +76,16 @@ export default class Color {
 			this.b = rgb.b
 			this.a = rgb.a ?? 1
 		}
-    return this
-  }
+		return this
+	}
 	/**return a hex string starting with '#' */
 	toHexString() {
-		let result:string
+		let result: string
 		const r = (this.r * 255).toString(16).padStart(2, '0')
 		const g = (this.g * 255).toString(16).padStart(2, '0')
 		const b = (this.b * 255).toString(16).padStart(2, '0')
 		result = `#${r}${g}${b}`
-		if(this.a!==1) result += (this.a * 255).toString(16).padStart(2, '0')
+		if (this.a !== 1) result += (this.a * 255).toString(16).padStart(2, '0')
 		return result
 	}
 	/**return a CSS style string like 'rgba(r,g,b,a)'*/
@@ -91,9 +95,9 @@ export default class Color {
 }
 
 function hex2rgba(hex: string | number) {
-	let r = 1, g = 1, b = 1, a = 1	
-	if(typeof hex === 'string'){
-		let num:number
+	let r = 1, g = 1, b = 1, a = 1
+	if (typeof hex === 'string') {
+		let num: number
 		if (hex[0] === '#') hex = hex.slice(1) // #开头则去掉井号
 		if (hex.match(rrggbbReg)) {
 			num = parseInt(hex, 16)
@@ -124,7 +128,7 @@ function hex2rgba(hex: string | number) {
 		else {
 			throw new Error('unknown color hex format')
 		}
-	}else if(typeof hex === 'number'){
+	} else if (typeof hex === 'number') {
 		r = (hex >> 16 & 255) / 255
 		g = (hex >> 8 & 255) / 255
 		b = (hex & 255) / 255
