@@ -11,6 +11,7 @@ export default class Matrix4 {
       0, 0, 0, 1
     ])
   }
+  /**arguements are expected to be given in row-major */
   set(n11: number, n12: number, n13: number, n14: number, n21: number, n22: number, n23: number, n24: number, n31: number, n32: number, n33: number, n34: number, n41: number, n42: number, n43: number, n44: number) {
     const te = this.elements;
     te[0] = n11; te[4] = n12; te[8] = n13; te[12] = n14;
@@ -138,5 +139,22 @@ export default class Matrix4 {
     te[15] = a41 * b14 + a42 * b24 + a43 * b34 + a44 * b44;
 
     return this;
+  }
+  transpose(){
+    const arr = new Float32Array(this.elements)
+    //@ts-expect-error
+    this.set(...arr)
+    return this
+  }
+  clone(){
+    const mat = new Matrix4()
+    mat.copy(this)
+    return mat
+  }
+  copy(mat:Matrix4){
+    for(let i=0;i<16;i++){
+      this.elements[i]=mat.elements[i]
+    }
+    return this
   }
 }

@@ -28,15 +28,15 @@ function getShader(gl: WebGLRenderingContext, shaderStr: string, type: 'frag' | 
   }
   return shader
 }
-export function setVertexBuffer(gl: WebGLRenderingContext, program: WebGLProgram, name: string, size: number, data: Float32Array) {
+export function setVertexBuffer(gl: WebGLRenderingContext, program: WebGLProgram, name: string, size: number, data: Float32Array) {  
+  const variable = gl.getAttribLocation(program, name)
+  if (variable === -1) {
+    console.error(`Setting attribute failed: cannot find attribute '${name}'`)
+    return
+  }
   const buffer = gl.createBuffer()
   gl.bindBuffer(gl.ARRAY_BUFFER, buffer)
   gl.bufferData(gl.ARRAY_BUFFER, data, gl.STATIC_DRAW)
-  const variable = gl.getAttribLocation(program, name)
-  if (variable === -1) {
-    console.error(`cannot find ${name}`)
-    return
-  }
   // const FLOAT_SIZE = data.BYTES_PER_ELEMENT
   gl.vertexAttribPointer(variable, size, gl.FLOAT, false, 0, 0)
   gl.enableVertexAttribArray(variable)
