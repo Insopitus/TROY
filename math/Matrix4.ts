@@ -59,6 +59,7 @@ export default class Matrix4 {
     this.elements[12] = vec.x
     this.elements[13] = vec.y
     this.elements[14] = vec.z
+    return this
   }
   getInverse(m: Matrix4) {
     // based on http://www.euclideanspace.com/maths/algebra/matrix/functions/inverse/fourD/index.htm

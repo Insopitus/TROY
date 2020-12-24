@@ -5,7 +5,8 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "vite"
+    "start": "vite",
+    "build": "vite build troy.ts"
   },
   "author": "Insopitus (jessefor@hotmail.com)",
   "license": "MIT",
@@ -19,5 +20,6 @@
   },
   "browserslist": [
     "last 3 Chrome versions"
-  ]
+  ],
+  "dependencies": {}
 }
