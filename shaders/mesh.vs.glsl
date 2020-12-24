@@ -6,7 +6,7 @@ uniform vec3 directionalLightColor;
 uniform vec3 ambientLightColor;
 uniform mat4 u_ViewMatrix;
 uniform mat4 u_ModelMatrix;
-uniform mat4 u_NormalMatrix;
+uniform mat3 u_NormalMatrix;
 varying vec3 v_VertexColor;
 void main(){
   vec3 diffuse = u_NormalMatrix*a_Normal*lightDirection;
