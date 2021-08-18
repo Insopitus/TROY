@@ -12,4 +12,5 @@ void main(){
   vec3 diffuse = mat3(u_NormalMatrix)*a_Normal*lightDirection;
   gl_Position = u_ProjectionMatrix*u_ViewMatrix*a_Position;
   v_VertexColor = diffuse;
+
 }
