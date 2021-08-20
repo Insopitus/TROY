@@ -158,4 +158,5 @@ export default class Matrix4 {
     }
     return this
   }
+  // TODO: compose
 }

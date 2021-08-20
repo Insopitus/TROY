@@ -4,4 +4,5 @@ export default class Geometry{
   normals: Float32Array
   uv: Float32Array
   constructor(){}
+  
 }

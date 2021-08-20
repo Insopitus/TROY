@@ -1,10 +1,6 @@
 import Geometry from "./Geometry"
 
 export default class BoxGeometry extends Geometry {
-  vertices: Float32Array
-  indices: Uint16Array
-  normals: Float32Array
-  uv: Float32Array
   constructor(public width: number, public height: number, public depth: number) {
     super()
     const w = width/2

@@ -10,8 +10,11 @@ import Scene from "./Scene";
 import { DirectionalLight } from "../lights/DirectionalLight";
 import AmbientLight from "../lights/AmbientLight";
 import Matrix4 from "../math/Matrix4";
-export default class Mesh {
+import Entity from "./Entity";
+export default class Mesh extends Entity {
+  matrix:Matrix4 = new Matrix4()
   constructor(public geometry: Geometry,) {
+    super()
   }
   compile(gl: WebGLRenderingContext, camera: Camera, scene: Scene) {
 
