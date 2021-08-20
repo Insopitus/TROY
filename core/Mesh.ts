@@ -2,9 +2,9 @@ import BoxGeometry from "../geometries/BoxGeometry";
 import Geometry from "../geometries/Geometry";
 import Camera from "./Camera";
 //@ts-ignore
-import vs from '../shaders/mesh.vs.glsl'
+import vs from '../shaders/mesh.vs.glsl?raw'
 //@ts-ignore
-import fs from '../shaders/mesh.fs.glsl'
+import fs from '../shaders/mesh.fs.glsl?raw'
 import { setIndexBuffer, setShaderProgram, setVertexBuffer } from "../utils/gl";
 import Scene from "./Scene";
 import { DirectionalLight } from "../lights/DirectionalLight";
